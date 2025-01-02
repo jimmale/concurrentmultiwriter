@@ -50,6 +50,9 @@ func main() {
 		os.Exit(1)
 	}
 
+	// the concurrent multiwriter has now finished writing to all of the underlying writers
+	// let's see what the hashers think of that text!
+
 	fmt.Println("\n================================================================================")
 	fmt.Printf("md5sum:         %x\n", md5hasher.Sum(nil))
 	fmt.Printf("sha1sum:        %x\n", sha1hasher.Sum(nil))

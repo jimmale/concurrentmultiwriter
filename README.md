@@ -34,7 +34,7 @@ func (s SlowDiscarder) Write(p []byte) (n int, err error) {
 
 func main() {
 
-	// these are five writers and we want to write to all of them at the same time
+	// these are the five writers that we want one input to be written to
 	md5hasher := md5.New()
 	sha1hasher := sha1.New()
 	sha256hasher := sha256.New()
@@ -60,6 +60,9 @@ func main() {
 		os.Exit(1)
 	}
 
+	// the concurrent multiwriter has now finished writing to all of the underlying writers
+	// let's see what the hashers think of that text!
+
 	fmt.Println("\n================================================================================")
 	fmt.Printf("md5sum:         %x\n", md5hasher.Sum(nil))
 	fmt.Printf("sha1sum:        %x\n", sha1hasher.Sum(nil))
@@ -68,5 +71,4 @@ func main() {
 	fmt.Println("slowDiscarder:  <text discarded>")
 	fmt.Println("================================================================================")
 }
-
 ```
